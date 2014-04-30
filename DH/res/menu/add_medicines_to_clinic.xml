@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+ <item android:id="@+id/add_add_medicines_to_clinic_menu" 
+        android:title="Add"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="always"></item>    
+
+</menu>
