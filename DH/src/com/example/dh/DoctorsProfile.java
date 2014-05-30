@@ -1,5 +1,8 @@
 package com.example.dh;
 
+import com.example.asyctask.DoctorsProfileTask;
+import com.example.datamodels.DoctorsModel;
+
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +17,8 @@ public class DoctorsProfile extends Fragment {
 	ImageView photo ;
 	TextView userName, address, specialization, experience, contact;
 	Button showOnamp;
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
@@ -27,6 +32,22 @@ public class DoctorsProfile extends Fragment {
 		showOnamp = (Button)v.findViewById(R.id.showOnMApDoctorsProfile);
 
 		return v;
+	}
+
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		
+		//Adjust as per your db----------
+		String userId="1";
+		
+		DoctorsModel objDoctorsModel = new DoctorsModel();
+		objDoctorsModel.setDoctorId(userId);
+		
+		new DoctorsProfileTask(getActivity()).execute(objDoctorsModel);
+		
 	}
 
 }

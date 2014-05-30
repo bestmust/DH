@@ -3,6 +3,10 @@ package com.example.dh;
 
 import java.util.ArrayList;
 
+import com.example.asyctask.AddMedicinesTask;
+import com.example.asyctask.MedicinesListTask;
+import com.example.datamodels.MedicinesClinicModel;
+
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -43,6 +47,9 @@ public class Add_medicines_to_clinic extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		
+		new MedicinesListTask(getActivity()).execute();
+		
 	}
 	
 	@Override
@@ -93,6 +100,12 @@ public class Add_medicines_to_clinic extends Fragment {
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(),
 							android.R.layout.simple_list_item_1, android.R.id.text1, stockArr);
 				MedicinesList.setAdapter(adapter);
+				
+				MedicinesClinicModel objMedicinesClinicModel  =new MedicinesClinicModel();
+				objMedicinesClinicModel.setMedicineName(addedMedicines);
+				
+				new AddMedicinesTask(getActivity()).execute(objMedicinesClinicModel);
+				
 				}
 			}
 		});

@@ -30,8 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="100sp"
-            android:padding="10sp"
+            android:background="@drawable/button"
+            android:padding="25sp"
             android:text="Set Image"
+            android:textColor="@android:color/white"
             android:textSize="25sp" />
     </LinearLayout>
 
@@ -44,37 +46,48 @@
 
         <EditText
             android:id="@+id/UserNamePatientAdd"
-            android:layout_width="280sp"
+            android:layout_width="360sp"
             android:layout_height="wrap_content"
+            android:background="@drawable/transparent_rectangle"
             android:hint="Enter User Name"
+            android:padding="20sp"
+            android:textColorHint="#006EFF"
             android:textSize="25sp" />
 
         <EditText
             android:id="@+id/UserAddressPatientAdd"
-            android:layout_width="280sp"
+            android:layout_width="360sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
+            android:background="@drawable/transparent_rectangle"
             android:hint="Enter Address"
+            android:padding="20sp"
+            android:textColorHint="#006EFF"
             android:textSize="25sp" />
 
         <EditText
             android:id="@+id/UserContactPatientAdd"
-            android:layout_width="280sp"
+            android:layout_width="360sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
+            android:background="@drawable/transparent_rectangle"
             android:hint="Contact No"
+            android:padding="20sp"
+            android:textColorHint="#006EFF"
             android:textSize="25sp" />
 
         <EditText
             android:id="@+id/UserDOBPatientAdd"
-            android:layout_width="280sp"
+            android:layout_width="360sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
+            android:background="@drawable/transparent_rectangle"
             android:hint="Date of Birth"
+            android:padding="20sp"
+            android:textColorHint="#006EFF"
             android:textSize="25sp" />
 
         <RadioGroup
-            
             android:id="@+id/radioGroupGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,12 +111,14 @@
 
         <Button
             android:id="@+id/buttonAddPatient"
-            android:layout_width="300sp"
+            android:layout_width="350sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
-            android:padding="10sp"
+            android:background="@drawable/button"
+            android:padding="20sp"
             android:text="Done"
+            android:textColor="@android:color/white"
             android:textSize="25sp" />
     </LinearLayout>
 

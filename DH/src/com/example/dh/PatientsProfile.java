@@ -1,5 +1,9 @@
 package com.example.dh;
 
+import com.example.asyctask.DoctorsProfileTask;
+import com.example.asyctask.PatientsProfileTask;
+import com.example.datamodels.DoctorsModel;
+import com.example.datamodels.PatientsParameterModel;
 import com.example.dh.CountryListFragmentPatient.ListFragmentItemClickListener;
 
 import android.os.Bundle;
@@ -22,9 +26,13 @@ public class PatientsProfile extends Activity implements ListFragmentItemClickLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_patient);
+	
+		
 		// enable ActionBar app icon to behave as action to toggle nav drawer
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
+	
+		
 	}
 
 	@Override

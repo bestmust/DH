@@ -1,10 +1,14 @@
 package com.example.dh;
 
+import com.example.asyctask.LoginTask;
+import com.example.datamodels.LoginModel;
+
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,7 +50,22 @@ public class Login extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.buttonLogin:
-			if(username.getText().toString().equalsIgnoreCase(sp.getString("user_name_login", "oiuntvcexcdvubexa"))  && password.getText().toString().equalsIgnoreCase(sp.getString("password_login", "oiuntvcexcdvubexa")))
+			
+			if(username.getText().toString().equalsIgnoreCase("")){
+				ErrorDialog.ErrorDialogCreation(Login.this,"Warning", "Please Enter UserName");
+			}else if(password.getText().toString().equalsIgnoreCase("")){
+				ErrorDialog.ErrorDialogCreation(Login.this,"Warning", "Please Enter Password");
+			}else{
+				
+				LoginModel objLoginModel = new LoginModel();
+				objLoginModel.setUserName(username.getText().toString());
+				objLoginModel.setPassword(password.getText().toString());
+				new LoginTask(Login.this).execute(objLoginModel);
+				
+			}
+			
+			
+			/*if(username.getText().toString().equalsIgnoreCase(sp.getString("user_name_login", "oiuntvcexcdvubexa"))  && password.getText().toString().equalsIgnoreCase(sp.getString("password_login", "oiuntvcexcdvubexa")))
 			{
 				Intent i = new Intent(Login.this, MainActivity.class);
 				startActivity(i);
@@ -56,7 +75,7 @@ public class Login extends Activity implements OnClickListener {
 			{
 				username.setError("Enter valid details");
 				password.setError("Enter valid details");
-			}
+			}*/
 			break;
 
 			case R.id.buttonRegister :
@@ -67,6 +86,21 @@ public class Login extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+	
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { 
+			// do something on back.
+			Intent startMain = new Intent(Intent.ACTION_MAIN); 
+			startMain.addCategory(Intent.CATEGORY_HOME); 
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain); 
+			return true; 
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

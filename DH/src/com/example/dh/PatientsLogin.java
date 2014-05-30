@@ -1,5 +1,8 @@
 package com.example.dh;
 
+import com.example.asyctask.PatientsProfileTask;
+import com.example.datamodels.PatientsParameterModel;
+
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -41,6 +44,14 @@ public class PatientsLogin extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
+				//------------Send as per db structure
+				String userId="1";
+				
+				PatientsParameterModel objPatientsParameterModel = new PatientsParameterModel();
+				objPatientsParameterModel.setPatientsId(userId);
+				
+				new PatientsProfileTask(getActivity()).execute(objPatientsParameterModel);
+			
 				Intent i = new Intent(getView().getContext(), PatientsProfile.class);
 				startActivity(i);
 			}

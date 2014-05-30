@@ -6,7 +6,7 @@ public class Country {
 	static String name[] = new String[] {
             "Doctors Profile",
             "Patients Login",
-            "Add medicines to clinic",
+            "Medicines in clinic",
             "Logout",
         
 	};
