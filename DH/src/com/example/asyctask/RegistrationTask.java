@@ -52,10 +52,16 @@ public class RegistrationTask extends AsyncTask<RegistrationModel, String, Strin
 	@Override
 	protected String doInBackground(RegistrationModel... params) {
 
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		RegistrationModel objRegistrationModel = params[0];
 		
-		Log.d("username", ""+objRegistrationModel.getUserName());
+		Log.d("username", ""+objRegistrationModel.getName());
 		Log.d("password", ""+objRegistrationModel.getPassword());
 		Log.d("address", ""+objRegistrationModel.getAddress());
 		Log.d("email", ""+objRegistrationModel.getEmail());
@@ -79,7 +85,12 @@ public class RegistrationTask extends AsyncTask<RegistrationModel, String, Strin
 
 		// Building post parameters, key and value pair
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
-		nameValuePair.add(new BasicNameValuePair("jsondata", request));
+		nameValuePair.add(new BasicNameValuePair("tag", "register"));
+		nameValuePair.add(new BasicNameValuePair("name", objRegistrationModel.getName() ));
+		nameValuePair.add(new BasicNameValuePair("email",objRegistrationModel.getEmail() ));
+		nameValuePair.add(new BasicNameValuePair("password",objRegistrationModel.getPassword() ));
+		nameValuePair.add(new BasicNameValuePair("address",objRegistrationModel.getAddress() ));
+		nameValuePair.add(new BasicNameValuePair("contact",objRegistrationModel.getPhone() ));
 
 		Log.d("cac", "NameValuePair"+nameValuePair);
 		// Url Encoding the POST parameters

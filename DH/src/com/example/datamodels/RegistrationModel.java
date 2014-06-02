@@ -2,17 +2,17 @@ package com.example.datamodels;
 
 public class RegistrationModel {
 	
-	private String userName;
+	private String name;
 	private String email;
 	private String address;
-	private String phone;
+	private String contact;
 	private String password;
 	
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -27,10 +27,10 @@ public class RegistrationModel {
 		this.address = address;
 	}
 	public String getPhone() {
-		return phone;
+		return contact;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.contact = phone;
 	}
 	public String getPassword() {
 		return password;

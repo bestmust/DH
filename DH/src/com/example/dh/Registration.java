@@ -68,7 +68,7 @@ public class Registration extends Activity implements OnClickListener {
 
 				// ------------------------------------------run a task to update details on db
 				RegistrationModel rModel = new RegistrationModel();
-				rModel.setUserName(usernameR.getText().toString());
+				rModel.setName(usernameR.getText().toString());
 				rModel.setPhone(phoneR.getText().toString());
 				rModel.setAddress(addressR.getText().toString());
 				rModel.setPassword(passwordR.getText().toString());

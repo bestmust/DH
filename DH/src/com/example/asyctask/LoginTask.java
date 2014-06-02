@@ -39,6 +39,7 @@ public class LoginTask extends AsyncTask<LoginModel, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
+		Log.d("response json is ", ""+result);
 	}
 
 	@Override
@@ -68,13 +69,15 @@ public class LoginTask extends AsyncTask<LoginModel, String, String> {
 
 		//Creating HttpPost
 		//Modify your url
-	/*	HttpPost httpPost = new HttpPost(Constants.SERVER_URL +"/controllername");
+		HttpPost httpPost = new HttpPost(Constants.SERVER_URL +"/android_api/doctor.php");
 		
 		Log.d("Call to servlet", "Call servlet");
 
 		// Building post parameters, key and value pair
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
-		nameValuePair.add(new BasicNameValuePair("jsondata", request));
+		nameValuePair.add(new BasicNameValuePair("tag", "login"));
+		nameValuePair.add(new BasicNameValuePair("email", objLoginModel.getUserName()));
+		nameValuePair.add(new BasicNameValuePair("password", objLoginModel.getPassword()));
 
 		Log.d("cac", "NameValuePair"+nameValuePair);
 		// Url Encoding the POST parameters
@@ -92,7 +95,7 @@ public class LoginTask extends AsyncTask<LoginModel, String, String> {
 
 			HttpEntity entity = response.getEntity();
 			jsonResponseString = EntityUtils.toString(entity);
-			Log.d("Http Response:",jsonResponseString);
+			//Log.d("Http Response:",jsonResponseString);
 
 		}catch (ClientProtocolException e) {
 			// writing exception to log
@@ -101,7 +104,7 @@ public class LoginTask extends AsyncTask<LoginModel, String, String> {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		return jsonResponseString;
 	}
 
