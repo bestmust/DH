@@ -1,5 +1,6 @@
 package com.example.dh;
 
+import com.erxproject.erx.library.NetStatus;
 import com.example.asyctask.RegistrationTask;
 import com.example.datamodels.RegistrationModel;
 
@@ -9,10 +10,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Registration extends Activity implements OnClickListener {
 
@@ -60,6 +63,15 @@ public class Registration extends Activity implements OnClickListener {
 			}else if(passwordR.getText().toString().equalsIgnoreCase("")){
 				ErrorDialog.ErrorDialogCreation(Registration.this,"Warning", "Please Enter Password");
 			}else{
+				
+				if (!NetStatus.getInstance(getBaseContext()).isOnline(getBaseContext())) {
+
+					Toast t = Toast.makeText(getBaseContext(),
+							"Please connect to Internet.", Toast.LENGTH_SHORT);
+					t.show();
+					Log.v("Home", "You are not online!!!!");
+					return;
+				}
 			
 				Editor ed = sp.edit();
 				ed.putString("user_name_login", emailR.getText().toString());

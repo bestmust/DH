@@ -12,6 +12,5 @@ public class CountryPatient {
             "Medicines",
             "Tests",
             "Final Prescription"
-        
 	};
 }

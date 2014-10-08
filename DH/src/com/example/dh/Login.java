@@ -1,5 +1,6 @@
 package com.example.dh;
 
+import com.erxproject.erx.library.NetStatus;
 import com.example.asyctask.LoginTask;
 import com.example.datamodels.LoginModel;
 
@@ -8,12 +9,14 @@ import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends Activity implements OnClickListener {
 
@@ -57,25 +60,21 @@ public class Login extends Activity implements OnClickListener {
 				ErrorDialog.ErrorDialogCreation(Login.this,"Warning", "Please Enter Password");
 			}else{
 				
+				if (!NetStatus.getInstance(getBaseContext()).isOnline(getBaseContext())) {
+
+					Toast t = Toast.makeText(getBaseContext(),
+							"Please connect to Internet.", Toast.LENGTH_SHORT);
+					t.show();
+					Log.v("Home", "You are not online!!!!");
+					return;
+				}
+				
 				LoginModel objLoginModel = new LoginModel();
 				objLoginModel.setUserName(username.getText().toString());
 				objLoginModel.setPassword(password.getText().toString());
 				new LoginTask(Login.this).execute(objLoginModel);
-				
 			}
 			
-			
-			/*if(username.getText().toString().equalsIgnoreCase(sp.getString("user_name_login", "oiuntvcexcdvubexa"))  && password.getText().toString().equalsIgnoreCase(sp.getString("password_login", "oiuntvcexcdvubexa")))
-			{
-				Intent i = new Intent(Login.this, MainActivity.class);
-				startActivity(i);
-				overridePendingTransition(R.anim.side_down, R.anim.slide_up);
-			}
-			else
-			{
-				username.setError("Enter valid details");
-				password.setError("Enter valid details");
-			}*/
 			break;
 
 			case R.id.buttonRegister :
