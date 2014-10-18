@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.erxproject.erx.library.PrintAdapter;
 import com.example.asyctask.SavePrescriptionTask;
 import com.example.datamodels.PatientsParameterModel;
 
@@ -14,12 +15,15 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PrintManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -44,7 +48,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class Final_prescription extends Fragment {
-	Button save , exitPatient;
+	Button save , exitPatient, printPrescription;
 	int i = 0;
 
 	@Override
@@ -53,6 +57,7 @@ public class Final_prescription extends Fragment {
 
 		View v = inflater.inflate(R.layout.activity_patients_final_prescription, null);
 		save = (Button)v.findViewById(R.id.buttonSavePrescription);
+		printPrescription = (Button)v.findViewById(R.id.printPrescriptionBtn);
 		exitPatient = (Button)v.findViewById(R.id.buttonLogoutPrescription);
 		exitPatient.setOnClickListener(new  OnClickListener() {
 
@@ -63,6 +68,34 @@ public class Final_prescription extends Fragment {
 				
 			}
 		});
+		
+		printPrescription.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) {
+				//Check if the Android version is 4.4 or higher.
+				if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
+					Toast t = Toast.makeText(getView().getContext(),
+							String.format("This feature is available in Android 4.4 or higher.\nYour version: Android %s", Build.VERSION.RELEASE), Toast.LENGTH_SHORT);
+					t.show();
+					return;
+				}
+
+				// Get a PrintManager instance
+				PrintManager printManager = (PrintManager) getView().getContext().getSystemService(Context.PRINT_SERVICE);
+
+				// Set job name, which will be displayed in the print queue
+				String jobName = getString(R.string.app_name) + "_Document";
+
+				// Start a print job, passing in a PrintDocumentAdapter implementation
+				// to handle the generation of a print document
+				printManager.print(jobName,
+						new PrintAdapter(getView().getContext()), null); //
+				
+			}
+			
+		});
 
 		save.setOnClickListener(new OnClickListener() {
 
@@ -71,7 +104,7 @@ public class Final_prescription extends Fragment {
 				// TODO Auto-generated method stub
 				if(save.getText().equals("Save"))
 				{
-					save.setText("Print");
+					save.setText("PrintAdapter");
 
 					View view = getActivity().findViewById(R.id.relativelayout);
 					view.setDrawingCacheEnabled(true);

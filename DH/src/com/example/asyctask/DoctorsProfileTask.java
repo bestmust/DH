@@ -4,16 +4,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.example.datamodels.DoctorsModel;
-import com.example.dh.DoctorsProfile;
-import com.google.gson.Gson;
-
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.datamodels.DoctorsModel;
+import com.google.gson.Gson;
 
 public class DoctorsProfileTask extends AsyncTask<DoctorsModel, String, String>{
 
